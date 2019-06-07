@@ -41,8 +41,6 @@ Instructions:
 	store a list of suits, ranks,
 	and then use a dictionary to map ranks to values.
 '''
-
-import random
 import time
 from user import Player 
 from functions import (calculate_hand, shuffle_deck, calculate_winner)
@@ -103,6 +101,7 @@ while True:
 	# Check if player even has enough $ to play a round
 	if player.balance == 0:
 		print("You went bankrupt! Game over!")
+		time.sleep(1)
 		play_game = 'N'
 	else:
 		play_game = input("Ready to play a round? (Y/N) ")
@@ -194,10 +193,10 @@ $$$$$$$$\ $$\   $$\  $$$$$$\  $$\   $$\ $$\   $$\       $$\     $$\  $$$$$$\  $$
 
 		# 6. Show only one of the Dealer's cards, the other remains hidden
 		print("[D] Dealer's hand is: {}, ???".format(dealers_hand[0]))
-
 		# 7. Show both of the Player's cards
 		players_hand_value = calculate_hand(card_deck, players_hand)
 		print("[P] Your hand is: {}, {}.".format(players_hand[0], players_hand[1]))
+		
 		# TEST
 		# players_hand_value = calculate_hand(card_deck, ['Ace of Spades', 'Ace of Hearts'])
 		# print("Your hand is: {}, {}.".format('Ace of Spades', 'Ace of Hearts'))
@@ -227,6 +226,15 @@ $$$$$$$$\ $$\   $$\  $$$$$$\  $$\   $$\ $$\   $$\       $$\     $$\  $$$$$$\  $$
 
 		while players_turn_in_session == True:
 			if (len(players_hand) == 2) and players_hand_value == 21:
+				print('''
+,---.                                                                                     ,---. 
+|   |    ,-----.  ,--.     ,---.   ,-----.,--. ,--.     ,--.  ,---.   ,-----.,--. ,--.    |   | 
+|  .'    |  |) /_ |  |    /  O  \ '  .--./|  .'   /     |  | /  O  \ '  .--./|  .'   /    |  .' 
+|  |     |  .-.  \|  |   |  .-.  ||  |    |  .   ' ,--. |  ||  .-.  ||  |    |  .   '     |  |  
+`--'     |  '--' /|  '--.|  | |  |'  '--'\|  |\   \|  '-'  /|  | |  |'  '--'\|  |\   \    `--'  
+.--.     `------' `-----'`--' `--' `-----'`--' '--' `-----' `--' `--' `-----'`--' '--'    .--.  
+'--'                                                                                      '--' 
+					''')
 				print("[P] You got a blackjack!")
 				break
 
@@ -252,7 +260,17 @@ $$$$$$$$\ $$\   $$\  $$$$$$\  $$\   $$\ $$\   $$\       $$\     $$\  $$$$$$\  $$
 
 				if (players_hand_value > 21):
 					print("Hand value at: ", players_hand_value)
-					print("Oops! You went bust!")
+					print('''
+ ______            _______ _________ _______  ______   _  _ 
+(  ___ \ |\     /|(  ____ \\__   __/(  ____ \(  __  \ ( )( )
+| (   ) )| )   ( || (    \/   ) (   | (    \/| (  \  )| || |
+| (__/ / | |   | || (_____    | |   | (__    | |   ) || || |
+|  __ (  | |   | |(_____  )   | |   |  __)   | |   | || || |
+| (  \ \ | |   | |      ) |   | |   | (      | |   ) |(_)(_)
+| )___) )| (___) |/\____) |   | |   | (____/\| (__/  ) _  _ 
+|/ \___/ (_______)\_______)   )_(   (_______/(______/ (_)(_)
+ 
+						''')
 					break
 				else:
 					print("[P] Your hand is: {}".format(players_hand_value))
@@ -290,6 +308,15 @@ $$$$$$$$\ $$\   $$\  $$$$$$\  $$\   $$\ $$\   $$\       $$\     $$\  $$$$$$\  $$
 		while dealers_turn_in_session == True:
 			
 			if (len(dealers_hand) == 2) and dealers_hand_value == 21:
+				print('''
+,---.                                                                                     ,---. 
+|   |    ,-----.  ,--.     ,---.   ,-----.,--. ,--.     ,--.  ,---.   ,-----.,--. ,--.    |   | 
+|  .'    |  |) /_ |  |    /  O  \ '  .--./|  .'   /     |  | /  O  \ '  .--./|  .'   /    |  .' 
+|  |     |  .-.  \|  |   |  .-.  ||  |    |  .   ' ,--. |  ||  .-.  ||  |    |  .   '     |  |  
+`--'     |  '--' /|  '--.|  | |  |'  '--'\|  |\   \|  '-'  /|  | |  |'  '--'\|  |\   \    `--'  
+.--.     `------' `-----'`--' `--' `-----'`--' '--' `-----' `--' `--' `-----'`--' '--'    .--.  
+'--'                                                                                      '--' 
+					''')
 				print("[D] Dealer has a blackjack!")
 				time.sleep(0.75)
 				break
@@ -318,6 +345,16 @@ $$$$$$$$\ $$\   $$\  $$$$$$\  $$\   $$\ $$\   $$\       $$\     $$\  $$$$$$\  $$
 				dealers_hand_value = calculate_hand(card_deck, dealers_hand)
 				time.sleep(0.75)
 				if (dealers_hand_value > 21):
+					print('''
+ ______            _______ _________ _______  ______   _  _ 
+(  ___ \ |\     /|(  ____ \\__   __/(  ____ \(  __  \ ( )( )
+| (   ) )| )   ( || (    \/   ) (   | (    \/| (  \  )| || |
+| (__/ / | |   | || (_____    | |   | (__    | |   ) || || |
+|  __ (  | |   | |(_____  )   | |   |  __)   | |   | || || |
+| (  \ \ | |   | |      ) |   | |   | (      | |   ) |(_)(_)
+| )___) )| (___) |/\____) |   | |   | (____/\| (__/  ) _  _ 
+|/ \___/ (_______)\_______)   )_(   (_______/(______/ (_)(_)
+						''')
 					print("Dealer's went bust with a value of: ", dealers_hand_value)
 					break
 				else:
@@ -344,7 +381,7 @@ $$$$$$$$\ $$\   $$\  $$$$$$\  $$\   $$\ $$\   $$\       $$\     $$\  $$$$$$\  $$
 		winnings = calculate_winner(bet_value, players_hand, players_hand_value, dealers_hand, dealers_hand_value)
 		print("You won: ${}".format(winnings))
 		player.deposit_winnings(winnings)
-		
+
 		# Determine win or loss
 		if (winnings > bet_value):
 			player.win_loss_count('W')
@@ -352,25 +389,5 @@ $$$$$$$$\ $$\   $$\  $$$$$$\  $$\   $$\ $$\   $$\       $$\     $$\  $$$$$$\  $$
 			player.win_loss_count('D')
 		else:
 			player.win_loss_count('L')
-			
+
 		break
-
-'''
-Players win if their hand has a greater total point value than the dealers,
-without going over 21.
-
-The best possible hand is called a blackjack and
-it consists of an ace and any 10-point card.
-A winning blackjack pays 3:2.
-
-If both the player and the dealer have a
-tie—including with a blackjack—the bet is a tie
-or “push” and money is neither lost, nor paid.
-
-All other winning hands pay even money, 1:1.
-
-If either the player or the dealer
-exceed 21 or “bust” the hand automatically loses.
-
-If both the dealer and player bust, the player loses.
-'''

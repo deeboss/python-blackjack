@@ -1,4 +1,5 @@
 import random
+from collections import defaultdict
 
 # Create and shuffle deck of cards
 def shuffle_deck(deck):
